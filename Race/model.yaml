@@ -31,7 +31,7 @@ Race:
                 type: string
               minItems: 4
           answerOption:
-              description: 'Property. The correct answer from the options.'
+              description: 'Property. The correct answer from the options list.'
               type: string
               x-ngsi: 
                 model: "https://schema.org/Text"
