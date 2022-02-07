@@ -111,7 +111,7 @@ Race:
         uri: "https://uri.etsi.org/ngsi-ld/description"
         uri-prefix: "https://uri.etsi.org/ngsi-ld/"
     id:
-      anyOf: &race_-_properties_-_owner_-_items_-_anyof
+      anyOf: &race_-_properties_-_items_-_anyof
         - description: 'Property. Identifier format of any NGSI entity'
           maxLength: 256
           minLength: 1
@@ -121,12 +121,6 @@ Race:
           format: uri
           type: string
       description: 'Unique identifier of the entity'
-      type: Property
-    owner:
-      description: 'A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)'
-      items:
-        anyOf: *race_-_properties_-_owner_-_items_-_anyof
-        description: 'Property. Unique identifier of the entity'
       type: Property
     seeAlso:
       description: 'list of uri pointing to additional resources about the item'
@@ -143,7 +137,7 @@ Race:
       description: 'List of references to one or more related entities.'
       items:
         anyOf:
-          - anyOf: *race_-_properties_-_owner_-_items_-_anyof
+          - anyOf: *race_-_properties_-_items_-_anyof
             description: 'Property. Unique identifier of the entity'
       minItems: 1
       type: Property
