@@ -111,7 +111,7 @@ Race:
         uri: "https://uri.etsi.org/ngsi-ld/description"
         uri-prefix: "https://uri.etsi.org/ngsi-ld/"
     id:
-      anyOf: &question_-_properties_-_owner_-_items_-_anyof
+      anyOf: &race_-_properties_-_owner_-_items_-_anyof
         - description: 'Property. Identifier format of any NGSI entity'
           maxLength: 256
           minLength: 1
