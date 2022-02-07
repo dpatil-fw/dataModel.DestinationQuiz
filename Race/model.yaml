@@ -1,0 +1,163 @@
+Race:
+  description: 'This entity contains a harmonised description of a Race'
+  properties:
+    name:
+      type: string
+      description: 'Property. The name of the race'
+      x-ngsi: 
+        model: "https://schema.org/Text"
+        type: Property
+    questions:
+      description: 'Property. An array of all questions for this race.'
+      type: array
+      items:
+        properties:
+          id:
+              description: 'Unique identifier of the entity'
+              type: string
+              x-ngsi: 
+                model: "https://schema.org/Text"
+                type: Property
+          question:
+              type: string
+              description: 'Property. Question entry for the quiz'
+              x-ngsi: 
+                model: "https://schema.org/Text"
+                type: Property
+          options:
+              description: 'Property. Model:''https://schema.org/Text''. Answer options provided for the question.'
+              type: array
+              items:
+                type: string
+              minItems: 4
+          answerOption:
+              description: 'Property. The correct answer from the options.'
+              type: string
+              x-ngsi: 
+                model: "https://schema.org/Text"
+                type: Property
+          location:
+              $id: https://geojson.org/schema/Geometry.json
+              $schema: "http://json-schema.org/draft-07/schema#"
+              oneOf:
+                - properties:
+                    coordinates:
+                      items:
+                        type: number
+                      minItems: 2
+                      type: array
+                    type:
+                      enum:
+                      - Point
+                      type: string
+                  required:
+                    - type
+                    - coordinates
+                  title: 'GeoJSON Point'
+                  type: object
+              x-ngsi: 
+                model: 
+                  - "https://purl.org/geojson/vocab#Point"
+                type: GeoProperty
+                uri: "https://uri.etsi.org/ngsi-ld/location"
+                uri-prefix: "https://uri.etsi.org/ngsi-ld/"
+          description:
+              description: 'A description of this item'
+              type: string
+              x-ngsi: 
+                model: "https://schema.org/Text"
+                type: Property
+                uri: "https://uri.etsi.org/ngsi-ld/description"
+                uri-prefix: "https://uri.etsi.org/ngsi-ld/"
+          images:
+              description: 'Property. Model:''https://schema.org/URL''. URL of the image of the place.'
+              type: array
+              items:
+                type: string
+                format: uri
+              minItems: 1
+      minItems: 1
+    location:
+      $id: https://geojson.org/schema/Geometry.json
+      $schema: "http://json-schema.org/draft-07/schema#"
+      oneOf:
+        - properties:
+            coordinates:
+              items:
+                type: number
+              minItems: 2
+              type: array
+            type:
+              enum:
+                - Point
+              type: string
+          required:
+            - type
+            - coordinates
+          title: 'GeoJSON Point'
+          type: object
+      x-ngsi: 
+        model: 
+          - "https://purl.org/geojson/vocab#Point"
+        type: GeoProperty
+        uri: "https://uri.etsi.org/ngsi-ld/location"
+        uri-prefix: "https://uri.etsi.org/ngsi-ld/"
+    description:
+      description: 'A description of this item'
+      type: string
+      x-ngsi: 
+        model: "https://schema.org/Text"
+        type: Property
+        uri: "https://uri.etsi.org/ngsi-ld/description"
+        uri-prefix: "https://uri.etsi.org/ngsi-ld/"
+    id:
+      anyOf: &question_-_properties_-_owner_-_items_-_anyof
+        - description: 'Property. Identifier format of any NGSI entity'
+          maxLength: 256
+          minLength: 1
+          pattern: ^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$
+          type: string
+        - description: 'Property. Identifier format of any NGSI entity'
+          format: uri
+          type: string
+      description: 'Unique identifier of the entity'
+      type: Property
+    owner:
+      description: 'A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)'
+      items:
+        anyOf: *race_-_properties_-_owner_-_items_-_anyof
+        description: 'Property. Unique identifier of the entity'
+      type: Property
+    seeAlso:
+      description: 'list of uri pointing to additional resources about the item'
+      oneOf:
+        - items:
+            - format: uri
+              type: string
+          minItems: 1
+          type: array
+        - format: uri
+          type: string
+      type: Property
+    refSeeAlso:
+      description: 'List of references to one or more related entities.'
+      items:
+        anyOf:
+          - anyOf: *race_-_properties_-_owner_-_items_-_anyof
+            description: 'Property. Unique identifier of the entity'
+      minItems: 1
+      type: Property
+      uniqueItems: true
+      x-ngsi:
+        model: "https://schema.org/URL"
+    type:
+      description: 'NGSI Entity type. It has to be Race'
+      enum:
+        - Race
+      type: Property
+  required:
+    - id
+    - name
+    - type
+    - questions
+    - location

@@ -1,0 +1,91 @@
+{
+    "$schema":"http://json-schema.org/schema#",
+    "$schemaVersion":"0.0.1",
+    "$id":"https://github.com/dpatil-fw/dataModel.DestinationQuiz/blob/master/Race/schema.json",
+    "title":"Destination Quiz Race schema",
+    "description":"This entity contains a harmonised geographic description of a Destination Quiz Race",
+    "type":"object",
+    "allOf":[
+        {
+            "$ref":"https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+        },
+        {
+            "$ref":"https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+        },
+        {
+            "properties":{
+                "type":{
+                    "type":"string",
+                    "enum":[
+                        "Race"
+                    ],
+                    "description":"Property. NGSI Entity type. It has to be Race"
+                },
+                "questions":{
+                    "type":"array",
+                    "description":"Property. An array of questions in the Race.",
+                    "items":{
+                    "properties":{
+                        "id":{
+                            "type":"string",
+                            "description":"Property. id of the Question."
+                        },
+                        "question":{
+                            "type":"string",
+                            "description":"Property. Question asked in the Quiz."
+                        },
+                        "options":{
+                            "type":"array",
+                            "description":"Property. Model:'https://schema.org/Text'. Answer options provided for the question",
+                            "items":{
+                                "type":"string"
+                            },
+                            "minItems":4
+                        },
+                        "answerIndex":{
+                            "type":number,
+                            "description":"Property. The correct option index from the multiple choice options."
+                        },
+                        "location": {
+                            "$ref": "http://geojson.org/schema/Geometry.json#",
+                            "description": "Geoproperty. Geojson reference to the item"
+                        },
+                        "images":{
+                            "type":"array",
+                            "description":"Property. URL of the images of the place. Model:'https://schema.org/URL'",
+                            "items":{
+                                "type":"string"
+                            }
+                        },
+                        "description": {
+                            "type": "string",
+                            "description": "Property. A description of this item"
+                        }
+                    }
+                    },
+                    "minItems":1
+                 },
+                "refSeeAlso":{
+                    "type":"array",
+                    "description":"Property. Model:'https://schema.org/URL'. List of references to one or more related entities.",
+                    "items":{
+                        "anyOf":[
+                            {
+                                "$ref":"https://smart-data-models.github.io/data-models/common-schema.json#/definitions/EntityIdentifierType"
+                            }
+                        ]
+                    },
+                    "minItems":1,
+                    "uniqueItems":true
+                }
+            }
+        }
+    ],
+    "required":[
+        "id",
+        "type",
+        "name",
+        "questions",
+        "location"
+    ]
+}
