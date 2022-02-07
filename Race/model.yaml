@@ -115,7 +115,6 @@ Race:
       maxLength: 256
       minLength: 1
       pattern: ^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$
-      description: 'Unique identifier of the entity'
       type: Property
     type:
       description: 'NGSI Entity type. It has to be Race'
