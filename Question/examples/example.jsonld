@@ -1,7 +1,7 @@
 {
     "id": "question-0001",
     "type": "Question",
-    "question": "Where is Ramakrishna Mission in Belgaum",
+    "questionText": "Where is Ramakrishna Mission in Belgaum",
     "options": [
         "Tilakwadi", "Fort", "Nanawadi", "Hindwadi"
     ],

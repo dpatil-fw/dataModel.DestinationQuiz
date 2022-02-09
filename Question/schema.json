@@ -14,7 +14,7 @@
         },
         {
             "properties":{
-                "question":{
+                "questionText":{
                     "type":"string",
                     "description":"Property. Question asked in the Quiz."
                 },
@@ -50,7 +50,7 @@
     "required":[
         "id",
         "type",
-        "question",
+        "questionText",
         "options",
         "location",
         "answerIndex"

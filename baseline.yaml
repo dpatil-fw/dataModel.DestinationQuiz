@@ -8,7 +8,7 @@ components:
 
     # This is a base definition of a Destination Quiz Question
     Question: 
-      $ref: "https://raw.githubusercontent.com/dpatil-fw/dataModel.DestinationQuiz/master/Race/model.yaml#/Question"
+      $ref: "https://raw.githubusercontent.com/dpatil-fw/dataModel.DestinationQuiz/master/Question/model.yaml#/Question"
 
 info: 
   description: "Base Model Definitions from Smart Data Models"

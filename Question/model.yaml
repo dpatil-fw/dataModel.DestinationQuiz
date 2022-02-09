@@ -2,7 +2,7 @@
 Question:
   description: 'This entity contains a harmonised description of a Question'
   properties:
-    question:
+    questionText:
         type: string
         description: 'Property. Question entry for the quiz'
         x-ngsi: 
@@ -113,7 +113,7 @@ Question:
   required:
     - id
     - type
-    - question
+    - questionText
     - options
     - answerOption
     - location
