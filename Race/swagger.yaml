@@ -1,8 +1,4 @@
 ---
-# Copyright (c) 2022 Contributors to Smart Destination Models initiative
-# 
-
-
 components:
   schemas: 
     Race: 
@@ -37,12 +33,12 @@ paths:
                   summary: "Key-Values Pairs"
                   value: 
                     - 
-                      $ref: "https://github.com/dpatil-fw/dataModel.DestinationQuiz/master/Race/examples/example.json"
+                      $ref: "https://raw.githubusercontent.com/dpatil-fw/dataModel.DestinationQuiz/master/Race/examples/example.json"
                 normalized: 
                   summary: "Normalized NGSI-LD"
                   value: 
                     - 
-                      $ref: "https://github.com/dpatil-fw/dataModel.DestinationQuiz/master/Race/examples/example-normalized.jsonld"
+                      $ref: "https://raw.githubusercontent.com/dpatil-fw/dataModel.DestinationQuiz/master/Race/examples/example-normalized.jsonld"
           description: OK
       tags: 
         - ngsi-ld

@@ -37,8 +37,6 @@ Race:
                 model: "https://schema.org/Text"
                 type: Property
           location:
-              $id: https://geojson.org/schema/Geometry.json
-              $schema: "http://json-schema.org/draft-07/schema#"
               oneOf:
                 - properties:
                     coordinates:
@@ -78,30 +76,28 @@ Race:
               minItems: 1
       minItems: 1
     location:
-      $id: https://geojson.org/schema/Geometry.json
-      $schema: "http://json-schema.org/draft-07/schema#"
-      oneOf:
-        - properties:
-            coordinates:
-              items:
-                type: number
-              minItems: 2
-              type: array
-            type:
-              enum:
+        oneOf:
+          - properties:
+              coordinates:
+                items:
+                  type: number
+                minItems: 2
+                type: array
+              type:
+                enum:
                 - Point
-              type: string
-          required:
-            - type
-            - coordinates
-          title: 'GeoJSON Point'
-          type: object
-      x-ngsi: 
-        model: 
-          - "https://purl.org/geojson/vocab#Point"
-        type: GeoProperty
-        uri: "https://uri.etsi.org/ngsi-ld/location"
-        uri-prefix: "https://uri.etsi.org/ngsi-ld/"
+                type: string
+            required:
+              - type
+              - coordinates
+            title: 'GeoJSON Point'
+            type: object
+        x-ngsi: 
+          model: 
+            - "https://purl.org/geojson/vocab#Point"
+          type: GeoProperty
+          uri: "https://uri.etsi.org/ngsi-ld/location"
+          uri-prefix: "https://uri.etsi.org/ngsi-ld/"
     description:
       description: 'A description of this item'
       type: string
@@ -111,16 +107,57 @@ Race:
         uri: "https://uri.etsi.org/ngsi-ld/description"
         uri-prefix: "https://uri.etsi.org/ngsi-ld/"
     id:
-      description: 'Property. Identifier format of any NGSI entity'
-      maxLength: 256
-      minLength: 1
-      pattern: ^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$
-      type: Property
+      anyOf: &race_-_properties_-_owner_-_items_-_anyof
+        - description: 'Property. Identifier format of any NGSI entity'
+          maxLength: 256
+          minLength: 1
+          pattern: ^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$
+          type: string
+        - description: 'Property. Identifier format of any NGSI entity'
+          format: uri
+          type: string
+      description: 'Unique identifier of the entity'
+      x-ngsi:
+        type: Property
+    owner:
+      description: 'A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)'
+      items:
+        anyOf: *race_-_properties_-_owner_-_items_-_anyof
+        description: 'Property. Unique identifier of the entity'
+      type: array
+      x-ngsi:
+        type: Property
+    seeAlso:
+      description: 'list of uri pointing to additional resources about the item'
+      oneOf:
+        - items:
+            format: uri
+            type: string
+          minItems: 1
+          type: array
+        - format: uri
+          type: string
+      x-ngsi:
+        type: Property
+    refSeeAlso:
+      description: 'List of references to one or more related entities.'
+      items:
+        anyOf:
+          - anyOf: *race_-_properties_-_owner_-_items_-_anyof
+            description: 'Property. Unique identifier of the entity'
+      minItems: 1
+      type: array
+      uniqueItems: true
+      x-ngsi:
+        model: https://schema.org/URL
+        type: Property
     type:
       description: 'NGSI Entity type. It has to be Race'
       enum:
         - Race
-      type: Property
+      type: string
+      x-ngsi:
+        type: Property
   required:
     - id
     - name
