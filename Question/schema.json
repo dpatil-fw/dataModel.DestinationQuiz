@@ -1,0 +1,58 @@
+{
+    "$schema":"http://json-schema.org/schema#",
+    "$schemaVersion":"0.0.1",
+    "$id":"https://github.com/dpatil-fw/dataModel.DestinationQuiz/blob/master/Question/schema.json",
+    "title":"Destination Quiz Question schema",
+    "description":"This entity contains a harmonised description of a Destination Quiz Question",
+    "type":"object",
+    "allOf":[
+        {
+            "$ref":"https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+        },
+        {
+            "$ref":"https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+        },
+        {
+            "properties":{
+                "question":{
+                    "type":"string",
+                    "description":"Property. Question asked in the Quiz."
+                },
+                "options":{
+                    "type":"array",
+                    "description":"Property. Model:'https://schema.org/Text'. Answer options provided for the question",
+                    "items":{
+                    "type":"string"
+                    },
+                    "minItems":4
+                },
+                "answerIndex":{
+                    "type": "number",
+                    "description":"Property. The correct option index from the multiple choice options."
+                },
+                "images":{
+                    "type":"array",
+                    "description":"Property. URL of the images of the place. Model:'https://schema.org/URL'",
+                    "items":{
+                    "type":"string"
+                    }
+                },
+                "type":{
+                    "type":"string",
+                    "enum":[
+                        "Question"
+                    ],
+                    "description":"Property. NGSI Entity type. It has to be Question"
+                }
+            }
+        }
+    ],
+    "required":[
+        "id",
+        "type",
+        "question",
+        "options",
+        "location",
+        "answerIndex"
+    ]
+}

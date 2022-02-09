@@ -9,43 +9,12 @@
         "type": "Property",
         "value": "Belgaum Race"
     },
-    "questions": {
-        "type": "Property",
-        "value": [ {
-            "id": "question-0001",
-            "type": "Question",
-            "question": "Where is Ramakrishna Mission in Belgaum",
-            "options": [
-                "Tilakwadi", "Fort", "Nanawadi", "Hindwadi"
-            ],
-            "answerIndex": 1,
-            "location": {
-              "type": "Point",
-              "coordinates": [ -8.768460000000001, 42.60214472222222 ]
-            },
-            "description": "Location of Ramakrishna Mission in Belgaum",
-            "images": [
-              "abc.jpg", "def.jpg"
-            ]
-          },
-          {
-            "id": "question-0002",
-            "type": "Question",
-            "question": "What is the name of the State Legislature building in Belgaum?",
-            "options": [
-                "Capitol Block", "Suvarna Vidhana Soudha", "Belgaum Legislature Office", "State Secretariat"
-            ],
-            "answerIndex": 1,
-            "location": {
-              "type": "Point",
-              "coordinates": [ -8.768460000000001, 42.60214472222222 ]
-            },
-            "description": "Location of Suvarna Vidhana Soudha in Belgaum",
-            "images": [
-              "abc.jpg", "def.jpg"
-            ]
-          }
-        ]
+    "refQuestions": {
+      "type": "Relationship",
+      "value": [
+        "question-0001",
+        "question-0002"
+      ]
     },
     "location": {
         "type": "GeoProperty",

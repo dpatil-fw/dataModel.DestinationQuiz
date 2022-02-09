@@ -1,26 +1,25 @@
 ---
-Race:
-  description: 'This entity contains a harmonised description of a Race'
+Question:
+  description: 'This entity contains a harmonised description of a Question'
   properties:
-    name:
-      type: string
-      description: 'Property. The name of the race'
-      x-ngsi: 
-        model: "https://schema.org/Text"
-        type: Property
-    refQuestions:
-      x-ngsi:
-        type: Relationship
-      type: array
-      description: 'Property. An array of all questions for this race.'
-      items: 
-        oneOf:
-          - type: string 
-            minLength: 1
-            maxLength: 256
-            pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
-          - type: string
-            format: uri
+    question:
+        type: string
+        description: 'Property. Question entry for the quiz'
+        x-ngsi: 
+          model: "https://schema.org/Text"
+          type: Property
+    options:
+        description: 'Property. Model:''https://schema.org/Text''. Answer options provided for the question.'
+        type: array
+        items:
+          type: string
+        minItems: 4
+    answerOption:
+        description: 'Property. The correct answer from the options list.'
+        type: string
+        x-ngsi: 
+          model: "https://schema.org/Text"
+          type: Property
     location:
         oneOf:
           - properties:
@@ -44,6 +43,13 @@ Race:
           type: GeoProperty
           uri: "https://uri.etsi.org/ngsi-ld/location"
           uri-prefix: "https://uri.etsi.org/ngsi-ld/"
+    images:
+        description: 'Property. Model:''https://schema.org/URL''. URL of the image of the place.'
+        type: array
+        items:
+          type: string
+          format: uri
+        minItems: 1
     description:
       description: 'A description of this item'
       type: string
@@ -53,7 +59,7 @@ Race:
         uri: "https://uri.etsi.org/ngsi-ld/description"
         uri-prefix: "https://uri.etsi.org/ngsi-ld/"
     id:
-      anyOf: &race_-_properties_-_owner_-_items_-_anyof
+      anyOf: &question_-_properties_-_owner_-_items_-_anyof
         - description: 'Property. Identifier format of any NGSI entity'
           maxLength: 256
           minLength: 1
@@ -68,7 +74,7 @@ Race:
     owner:
       description: 'A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)'
       items:
-        anyOf: *race_-_properties_-_owner_-_items_-_anyof
+        anyOf: *question_-_properties_-_owner_-_items_-_anyof
         description: 'Property. Unique identifier of the entity'
       type: array
       x-ngsi:
@@ -89,7 +95,7 @@ Race:
       description: 'List of references to one or more related entities.'
       items:
         anyOf:
-          - anyOf: *race_-_properties_-_owner_-_items_-_anyof
+          - anyOf: *question_-_properties_-_owner_-_items_-_anyof
             description: 'Property. Unique identifier of the entity'
       minItems: 1
       type: array
@@ -98,15 +104,16 @@ Race:
         model: https://schema.org/URL
         type: Property
     type:
-      description: 'NGSI Entity type. It has to be Race'
+      description: 'NGSI Entity type. It has to be Question'
       enum:
-        - Race
+        - Question
       type: string
       x-ngsi:
         type: Property
   required:
     - id
-    - name
     - type
-    - refQuestions
+    - question
+    - options
+    - answerOption
     - location
