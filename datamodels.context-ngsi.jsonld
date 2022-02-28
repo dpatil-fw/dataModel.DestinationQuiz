@@ -2,8 +2,8 @@
     "@context": {
         "type": "@type",
         "id": "@id",
-        "ngsi-ld": "https://uri.etsi.org/ngsi-ld/",
-        "fiware": "https://uri.fiware.org/ns/data-models#",
+        "ngsi-ld": "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.5.jsonld",
+        "fiware": "https://fiware.github.io/data-models/context.jsonld",
         "schema": "https://schema.org/",
         "Question": "fiware:Question",
         "Race": "fiware:Race",
